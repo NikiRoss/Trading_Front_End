@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <link rel="stylesheet" href="admin.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Page</title>
+  </head>
+  <body>
+    <h1 th:text="'Hi, Admin!' + ${admin.username}"></h1>
+
+    <div class="user-list">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Account ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <div th:each="user : ${userlist}">
+            <tr class="clickable-row">
+              <td th:text="${user.userId}"></td>
+              <td th:text="${user.firstName}"></td>
+              <td th:text="${user.surname}"></td>
+              <td th:text="${user.email}"></td>
+              <td>
+                <a th:href="@{'/admin/disable/' + ${user.userId}} "
+                  >Enable/Disable</a
+                >
+              </td>
+            </tr>
+          </div>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="wrapper wrapper-admin">
+      <div class="title">Register New Admin</div>
+      <form action="">
+        <div class="input-field">
+          <input type="text" placeholder="First Name" class="input" />
+        </div>
+
+        <div class="input-field">
+          <input type="text" placeholder="Surname" class="input" />
+        </div>
+
+        <div class="input-field">
+          <input type="text" placeholder="Email" class="input" />
+        </div>
+
+        <div class="input-field">
+          <input type="text" placeholder="Username" class="input" />
+        </div>
+
+        <div class="input-field">
+          <input type="password" placeholder="Password" class="input" />
+        </div>
+      </form>
+
+      <button class="submit">Submit</button>
+    </div>
+
+    <br />
+
+    <div class="wrapper wrapper-stock">
+      <div class="title">Register New Admin</div>
+      <form action="">
+        <div class="input-field">
+          <input type="text" placeholder="First Name" class="input" />
+        </div>
+
+        <div class="input-field">
+          <input type="text" placeholder="Surname" class="input" />
+        </div>
+
+        <div class="input-field">
+          <input type="text" placeholder="Email" class="input" />
+        </div>
+
+        <div class="input-field">
+          <input type="text" placeholder="Username" class="input" />
+        </div>
+
+        <div class="input-field">
+          <input type="password" placeholder="Password" class="input" />
+        </div>
+      </form>
+
+      <button class="submit">Submit</button>
+    </div>
+  </body>
+</html>

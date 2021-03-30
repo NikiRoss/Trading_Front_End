@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="transactions.css">
+<title>Transactions</title>
+</head>
+<body>
+<!-- NAVBAR START -->
+<div class="navbar">
+    <div class="nav-container flex">
+        <nav>
+            <ul>
+                <li><a class="nav-anchor" th:href="@{/stocks}">Stocks</a></li>
+                <li><a class="nav-anchor" th:href="@{/transactions}">Transactions</a></li>
+                <li><a class="nav-anchor" th:href="@{/holdings}">Holdings</a></li>
+                <li><a class="nav-anchor" th:href="@{/logout}">Logout</a></li>
+                <li><a class="nav-anchor" th:href="@{/admin}">Admin</a></li>
+                <li><a class="nav-anchor" sec:authorize="hasRole('ROLE_ADMIN')" class="admin-link" th:href="@{/admin/users}">Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- NAVBAR END -->
+
+      <div class="report-container">
+        <a th:href="@{/transData}">Export XML Transactions</a>
+        <a th:href="@{/transData/Json}">Export Json Transactions</a>
+      </div>
+
+<div class="table-container">
+    <h1 class="text-primary text-center">Transactions List</h1>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Company</th>
+            <th>Date</th>
+            <th>Volume</th>
+            <th>Price</th>
+            <th>Purchase/ Sale</th>
+
+        </tr>
+        <div th:each="transactions : ${transList}">
+            <tr>
+                    <td th:text="${transactions.transactionId}"></td>
+                    <td th:text="${transactions.stocks.company}"></td>
+                    <td th:text="${transactions.date}"></td>
+                    <td th:text="${transactions.volume}"></td>
+                    <td th:text="${transactions.price}"></td>
+                    <td th:text="${transactions.purchase}"></td>
+            </tr>
+        </div>
+    </table>
+</div>
+</body>
+</html>

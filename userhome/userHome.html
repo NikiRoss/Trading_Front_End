@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="userHome.css" />
+    <title>User Home</title>
+  </head>
+  <body>
+    <!-- NAVBAR START -->
+    <div class="navbar">
+      <div class="nav-container flex">
+        <nav>
+          <ul>
+            <li><a href="#Stocks">Stocks</a></li>
+            <li><a href="#Transactions">Transactions</a></li>
+            <li><a href="#Holdings">Holdings</a></li>
+            <li><a href="#Logout">Logout</a></li>
+            <li><a href="#Admin">Admin</a></li>
+            <!-- <a
+          sec:authorize="hasRole('ROLE_ADMIN')"
+          class="admin-link"
+          th:href="@{/admin/users}"
+          >Admin</a
+        > -->
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- NAVBAR END -->
+
+    <div class="display-container">
+      <div class="user-details">
+        <h4 class="name" th:text="${user.firsname}">Name: Niki Ross</h4>
+        <h4 class="email" th:text="${user.email}">
+          Email: niki.ross49@gmail.com
+        </h4>
+        <h4 class="balance">
+          Your balance is £ <i aria-hidden="true"></i>
+          <span th:inline="text"
+            >$ [[${#numbers.formatDecimal(account.accountBalance, 0, 'COMMA', 2,
+            'POINT')}]]</span
+          >
+        </h4>
+      </div>
+
+      <div class="display-balance">
+        <h2 th:text="'Hi ' + ${user.firstName}"></h2>
+        <h3>Your available balance is</h3>
+        <h4 id="balance">£20,000</h4>
+      </div>
+    </div>
+  </body>
+</html>

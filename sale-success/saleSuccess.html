@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="saleSuccess.css" />
+    <title>Sale Success</title>
+  </head>
+  <body>
+    <!-- NAVBAR START -->
+    <div class="navbar">
+      <div class="nav-container flex">
+        <nav>
+          <ul>
+            <li><a href="#Stocks">Stocks</a></li>
+            <li><a href="#Transactions">Transactions</a></li>
+            <li><a href="#Holdings">Holdings</a></li>
+            <li><a href="#Logout">Logout</a></li>
+            <li><a href="#Admin">Admin</a></li>
+            <!-- <a
+          sec:authorize="hasRole('ROLE_ADMIN')"
+          class="admin-link"
+          th:href="@{/admin/users}"
+          >Admin</a
+        > -->
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- NAVBAR END -->
+
+    <h1 th:text="${message}"></h1>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="sale.css">
+
+<title>Sell Stock</title>
+</head>
+<body >
+    <!-- NAVBAR START -->
+    <div class="navbar">
+        <div class="nav-container flex">
+          <nav>
+            <ul>
+              <li><a href="#Stocks">Stocks</a></li>
+              <li><a href="#Transactions">Transactions</a></li>
+              <li><a href="#Holdings">Holdings</a></li>
+              <li><a href="#Logout">Logout</a></li>
+              <li><a href="#Admin">Admin</a></li>
+              <li><a sec:authorize="hasRole('ROLE_ADMIN')" class="admin-link" th:href="@{/admin/users}">Admin</a></li> 
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- NAVBAR END -->
+
+<div class="display-container">
+    <h4 th:text="'Sell '+ ${stocks.company} + ' holdings'"></h4>
+    <!-- ACCOUNT BALANCE -->
+    <div class="display-balance">
+        <p id="balance">Balance: <i></i> <span
+                th:text="${#numbers.formatDecimal(account.accountBalance, 0, 'COMMA', 2, 'POINT')}">£55,900</span>
+        </p>
+    </div>
+
+    <div class="stock-input">
+        <form action="" th:action="@{'/stocks/sale/' + ${stocks.stockId}}" th:object="${transaction}" method="post">
+            <p>Select the number of stocks you wish to sell: <input id="stock-input" type="number" th:field="*{volume}"/></p>
+               <button class="submit" type="submit" value="Submit" onclick="generateMessage()">Submit</button>
+           </form>
+   
+       <div id="alertBox" th:text="${message}"></div>
+    </div>       
+</div>
+
+
+<script th:inline="javascript">
+        /*<![CDATA[*/
+        var message = /*[[${message}]]*/ 'message';
+        /*]]>*/
+        var p = document.createElement('p');
+        p.appendChild(message);
+        document.getElementById('alertBox').appendChild(p);
+</script>
+</body>
+</html>
